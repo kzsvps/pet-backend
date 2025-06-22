@@ -25,6 +25,12 @@ public class User {
         return account;
     }
 
+    private int type; // 或 Integer
+
+    public int getType() {
+        return type;
+    }
+
     public void setAccount(String account) {
         this.account = account;
     }
