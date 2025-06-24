@@ -1,13 +1,23 @@
 package com.example.restapi.player.dto;
 
-import lombok.Data;
-
-@Data
 public class PlayerRegisterRequest {
     private String account;
     private String password;
-    private String nickname;
-    private String gender;
-    private String city;
-    private String birthday;
+
+    // getters and setters
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
