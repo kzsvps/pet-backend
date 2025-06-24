@@ -1,8 +1,9 @@
-package com.example.restapi.controller;
+package com.example.restapi.shop.controller;
 
-import com.example.restapi.dto.ShopRegisterRequest;
-import com.example.restapi.entity.Shop;
-import com.example.restapi.service.ShopService;
+import com.example.restapi.shop.dto.ShopRegisterRequest;
+import com.example.restapi.shop.entity.Shop;
+import com.example.restapi.shop.service.ShopService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

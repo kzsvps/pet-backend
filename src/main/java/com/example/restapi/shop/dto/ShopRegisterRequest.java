@@ -1,7 +1,8 @@
-package com.example.restapi.dto;
+package com.example.restapi.shop.dto;
 
-import com.example.restapi.enums.City;
-import com.example.restapi.enums.ShopType;
+import com.example.restapi.shop.enums.City;
+import com.example.restapi.shop.enums.ShopType;
+
 import lombok.Data;
 
 @Data

@@ -1,7 +1,8 @@
-package com.example.restapi.repository;
+package com.example.restapi.shop.repository;
 
-import com.example.restapi.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.restapi.shop.entity.Shop;
 
 import java.util.Optional;
 

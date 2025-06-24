@@ -1,8 +1,8 @@
-package com.example.restapi.service;
+package com.example.restapi.shop.service;
 
-import com.example.restapi.dto.ShopRegisterRequest;
-import com.example.restapi.entity.Shop;
-import com.example.restapi.repository.ShopRepository;
+import com.example.restapi.shop.dto.ShopRegisterRequest;
+import com.example.restapi.shop.entity.Shop;
+import com.example.restapi.shop.repository.ShopRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

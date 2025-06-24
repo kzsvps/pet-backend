@@ -1,9 +1,11 @@
-package com.example.restapi.entity;
+package com.example.restapi.shop.entity;
 
-import com.example.restapi.enums.City;
-import com.example.restapi.enums.ShopType;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import com.example.restapi.shop.enums.City;
+import com.example.restapi.shop.enums.ShopType;
+
 import lombok.Data;
 
 @Data

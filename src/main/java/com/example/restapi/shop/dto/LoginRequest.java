@@ -1,4 +1,4 @@
-package com.example.restapi.dto;
+package com.example.restapi.shop.dto;
 
 public class LoginRequest {
     private String account;

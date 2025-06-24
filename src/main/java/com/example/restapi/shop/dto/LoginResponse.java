@@ -1,4 +1,4 @@
-package com.example.restapi.dto;
+package com.example.restapi.shop.dto;
 
 public class LoginResponse {
     private String status;
