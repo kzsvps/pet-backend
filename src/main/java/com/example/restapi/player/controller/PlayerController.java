@@ -1,6 +1,7 @@
 package com.example.restapi.player.controller;
 
 import com.example.restapi.player.dto.PlayerRegisterRequest;
+import com.example.restapi.player.dto.PlayerUpdateProfileRequest;
 import com.example.restapi.player.entity.Player;
 import com.example.restapi.player.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,26 @@ public class PlayerController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("伺服器錯誤：" + e.getMessage());
+        }
+    }
+
+    @PostMapping("/updateProfile")
+    public ResponseEntity<String> updateProfile(@RequestBody PlayerUpdateProfileRequest request) {
+        boolean success = playerService.updateProfile(request);
+        if (success) {
+            return ResponseEntity.ok("資料更新成功！");
+        } else {
+            return ResponseEntity.badRequest().body("更新失敗，找不到該玩家。");
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody PlayerRegisterRequest request) {
+        boolean valid = playerService.validateLogin(request.getAccount(), request.getPassword());
+        if (valid) {
+            return ResponseEntity.ok("登入成功");
+        } else {
+            return ResponseEntity.status(401).body("帳號或密碼錯誤");
         }
     }
 }

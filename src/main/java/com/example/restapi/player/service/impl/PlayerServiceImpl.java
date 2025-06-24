@@ -20,20 +20,16 @@ public class PlayerServiceImpl implements PlayerService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
-    public boolean registerPlayer(PlayerRegisterRequest request) {
-        // 檢查帳號是否存在
+    public Player registerPlayer(PlayerRegisterRequest request) {
         if (playerRepository.findByAccount(request.getAccount()).isPresent()) {
-            return false;
+            return null; // 帳號已存在
         }
 
         Player player = new Player();
         player.setAccount(request.getAccount());
-
-        // 密碼加密
         player.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        playerRepository.save(player);
-        return true;
+        return playerRepository.save(player);
     }
 
     @Override
