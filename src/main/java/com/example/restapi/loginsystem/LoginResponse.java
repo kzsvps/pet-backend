@@ -4,15 +4,13 @@ import lombok.Data;
 
 @Data
 public class LoginResponse {
-    private String role; // "player" 或 "shop"
-
-    // 共用欄位
+    private String role;
     private Long id;
 
-    // Player 專屬
+    // Player
     private String nickname;
 
-    // Shop 專屬
+    // Shop
     private String shopName;
     private String type;
     private String address;

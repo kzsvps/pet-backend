@@ -25,7 +25,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
-        // Step 1：查找玩家
+        // Step 1: 查詢玩家
         Optional<Player> optionalPlayer = playerRepository.findByAccount(request.getAccount());
         if (optionalPlayer.isPresent()) {
             Player player = optionalPlayer.get();
@@ -34,11 +34,19 @@ public class LoginController {
                 res.setRole("player");
                 res.setId(player.getId());
                 res.setNickname(player.getNickname());
+
+                // 補空值給 Unity JsonUtility 不會報錯
+                res.setShopName("");
+                res.setType("");
+                res.setAddress("");
+                res.setPhone("");
+                res.setCity("");
+
                 return res;
             }
         }
 
-        // Step 2：查找商家
+        // Step 2: 查詢商家
         Optional<Shop> optionalShop = shopRepository.findByAccount(request.getAccount());
         if (optionalShop.isPresent()) {
             Shop shop = optionalShop.get();
@@ -51,11 +59,14 @@ public class LoginController {
                 res.setAddress(shop.getAddress());
                 res.setPhone(shop.getPhone());
                 res.setCity(shop.getCity().name());
+
+                // 補空值給 Unity JsonUtility 不會報錯
+                res.setNickname("");
+
                 return res;
             }
         }
 
-        // Step 3：都找不到或密碼不對
         throw new RuntimeException("帳號或密碼錯誤");
     }
 }
