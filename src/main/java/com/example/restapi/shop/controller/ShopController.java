@@ -38,16 +38,11 @@ public class ShopController {
 
     @PostMapping("/updateProfile")
     public ResponseEntity<String> updateProfile(@RequestBody ShopUpdateProfileRequest request) {
-        try {
-            boolean success = shopService.updateProfile(request);
-            if (success) {
-                return ResponseEntity.ok("資料更新成功！");
-            } else {
-                return ResponseEntity.badRequest().body("更新失敗，找不到該商家。");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("伺服器錯誤：" + e.getMessage());
+        boolean success = shopService.updateProfile(request);
+        if (success) {
+            return ResponseEntity.ok("資料更新成功！");
+        } else {
+            return ResponseEntity.badRequest().body("更新失敗，找不到該商家。");
         }
     }
 }
