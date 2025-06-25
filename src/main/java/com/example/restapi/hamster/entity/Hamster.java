@@ -1,6 +1,7 @@
 package com.example.restapi.hamster.entity;
 
 import com.example.restapi.player.entity.Player;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,5 +21,10 @@ public class Hamster {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")
+    @JsonIgnore
     private Player player;
+
+    public Long getPlayerId() {
+        return player != null ? player.getId() : null;
+    }
 }
