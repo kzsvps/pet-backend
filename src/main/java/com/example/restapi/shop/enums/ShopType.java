@@ -1,28 +1,33 @@
 package com.example.restapi.shop.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum ShopType {
     FOOD("美食"),
     DRINK("飲品"),
     BAR("酒吧"),
-    SPORTS("運動"),
+    SPORT("運動"),
     ART("藝文");
 
-    private final String displayName;
+    private final String label;
 
-    ShopType(String displayName) {
-        this.displayName = displayName;
+    ShopType(String label) {
+        this.label = label;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    @JsonValue
+    public String getLabel() {
+        return label;
     }
 
-    public static ShopType fromString(String type) {
-        for (ShopType t : ShopType.values()) {
-            if (t.getDisplayName().equals(type)) {
-                return t;
+    @JsonCreator
+    public static ShopType fromLabel(String label) {
+        for (ShopType type : ShopType.values()) {
+            if (type.label.equals(label) || type.name().equalsIgnoreCase(label)) {
+                return type;
             }
         }
-        throw new IllegalArgumentException("Unknown shop type: " + type);
+        throw new IllegalArgumentException("Invalid shop type: " + label);
     }
 }

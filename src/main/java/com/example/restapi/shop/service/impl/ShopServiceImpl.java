@@ -46,7 +46,7 @@ public class ShopServiceImpl implements ShopService {
         shop.setPhone(request.getPhone());
         shop.setCity(request.getCity());
         // 這裡轉換
-        shop.setType(ShopType.fromString(request.getType()));
+        shop.setType(ShopType.fromLabel(request.getType()));
 
         shopRepository.save(shop);
         return true;

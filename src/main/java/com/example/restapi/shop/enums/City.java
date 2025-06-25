@@ -1,28 +1,31 @@
 package com.example.restapi.shop.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum City {
     TAIPEI("台北市"),
-    NEW_TAIPEI("新北市"),
     TAICHUNG("台中市"),
     KAOHSIUNG("高雄市");
 
-    private final String displayName;
+    private final String label;
 
-    City(String displayName) {
-        this.displayName = displayName;
+    City(String label) {
+        this.label = label;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    @JsonValue
+    public String getLabel() {
+        return label;
     }
 
-    // 從字串取得對應 City enum
-    public static City fromString(String city) {
-        for (City c : City.values()) {
-            if (c.getDisplayName().equals(city)) {
-                return c;
+    @JsonCreator
+    public static City fromLabel(String label) {
+        for (City city : City.values()) {
+            if (city.label.equals(label) || city.name().equalsIgnoreCase(label)) {
+                return city;
             }
         }
-        throw new IllegalArgumentException("Unknown city: " + city);
+        throw new IllegalArgumentException("Invalid city: " + label);
     }
 }

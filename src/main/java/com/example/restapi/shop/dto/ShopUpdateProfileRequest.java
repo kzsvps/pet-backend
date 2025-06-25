@@ -1,13 +1,14 @@
 package com.example.restapi.shop.dto;
 
 public class ShopUpdateProfileRequest {
-    private Integer shopId; // 主鍵改為 Integer
+    private Integer shopId; // 注意要 Integer 不要 Long
     private String shopName;
+    private String type;
     private String address;
     private String phone;
     private String city;
-    private String type;
 
+    // getters & setters
     public Integer getShopId() {
         return shopId;
     }
@@ -22,6 +23,14 @@ public class ShopUpdateProfileRequest {
 
     public void setShopName(String shopName) {
         this.shopName = shopName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getAddress() {
@@ -46,13 +55,5 @@ public class ShopUpdateProfileRequest {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
