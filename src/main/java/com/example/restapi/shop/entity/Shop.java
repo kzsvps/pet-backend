@@ -1,6 +1,5 @@
 package com.example.restapi.shop.entity;
 
-import com.example.restapi.shop.enums.City;
 import com.example.restapi.shop.enums.ShopType;
 import jakarta.persistence.*;
 
@@ -10,27 +9,26 @@ public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String account;
-    private String password;
-    private String shopName;
-    private String address;
-    private String phone;
 
-    @Enumerated(EnumType.STRING)
-    private City city;
+    private String password;
+
+    private String shopName;
+
+    private String address;
+
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     private ShopType type;
 
-    // getters & setters
-    public Long getId() {
-        return id;
-    }
+    private String city;
 
-    public void setId(Long id) {
-        this.id = id;
+    // Getter & Setter
+    public Integer getId() {
+        return id;
     }
 
     public String getAccount() {
@@ -73,19 +71,19 @@ public class Shop {
         this.phone = phone;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
     public ShopType getType() {
         return type;
     }
 
     public void setType(ShopType type) {
         this.type = type;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

@@ -4,6 +4,7 @@ public class ShopRegisterRequest {
     private String account;
     private String password;
 
+    // Getter & Setter
     public String getAccount() {
         return account;
     }
