@@ -6,6 +6,7 @@ import com.example.restapi.player.repository.PlayerRepository;
 import com.example.restapi.shop.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
@@ -19,39 +20,42 @@ public class LoginController {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
-        // 嘗試用帳號密碼找 Player
-        Optional<Player> optionalPlayer = playerRepository.findByAccountAndPassword(
-                request.getAccount(), request.getPassword());
-
+        // Step 1：查找玩家
+        Optional<Player> optionalPlayer = playerRepository.findByAccount(request.getAccount());
         if (optionalPlayer.isPresent()) {
             Player player = optionalPlayer.get();
-            LoginResponse res = new LoginResponse();
-            res.setRole("player");
-            res.setId(player.getId());
-            res.setNickname(player.getNickname());
-            return res;
+            if (passwordEncoder.matches(request.getPassword(), player.getPassword())) {
+                LoginResponse res = new LoginResponse();
+                res.setRole("player");
+                res.setId(player.getId());
+                res.setNickname(player.getNickname());
+                return res;
+            }
         }
 
-        // 嘗試用帳號密碼找 Shop
-        Optional<Shop> optionalShop = shopRepository.findByAccountAndPassword(
-                request.getAccount(), request.getPassword());
-
+        // Step 2：查找商家
+        Optional<Shop> optionalShop = shopRepository.findByAccount(request.getAccount());
         if (optionalShop.isPresent()) {
             Shop shop = optionalShop.get();
-            LoginResponse res = new LoginResponse();
-            res.setRole("shop");
-            res.setId(shop.getId().longValue()); // Shop 的 id 是 Integer，轉成 Long
-            res.setShopName(shop.getShopName());
-            res.setType(shop.getType().name());
-            res.setAddress(shop.getAddress());
-            res.setPhone(shop.getPhone());
-            res.setCity(shop.getCity().name());
-            return res;
+            if (passwordEncoder.matches(request.getPassword(), shop.getPassword())) {
+                LoginResponse res = new LoginResponse();
+                res.setRole("shop");
+                res.setId(shop.getId().longValue());
+                res.setShopName(shop.getShopName());
+                res.setType(shop.getType().name());
+                res.setAddress(shop.getAddress());
+                res.setPhone(shop.getPhone());
+                res.setCity(shop.getCity().name());
+                return res;
+            }
         }
 
-        // 若兩邊都查不到，拋出錯誤
+        // Step 3：都找不到或密碼不對
         throw new RuntimeException("帳號或密碼錯誤");
     }
 }
