@@ -1,14 +1,14 @@
 package com.example.restapi.shop.dto;
 
+import com.example.restapi.shop.enums.City;
+
 public class ShopUpdateProfileRequest {
     private Long shopId;
     private String shopName;
     private String address;
     private String phone;
-    private String city;
+    private City city;
     private String type;
-
-    // getters and setters
 
     public Long getShopId() {
         return shopId;
@@ -42,11 +42,11 @@ public class ShopUpdateProfileRequest {
         this.phone = phone;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 

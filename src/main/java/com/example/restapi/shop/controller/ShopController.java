@@ -20,29 +20,21 @@ public class ShopController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody ShopRegisterRequest request) {
-        try {
-            Shop shop = shopService.registerShop(request);
-            if (shop != null) {
-                Map<String, Object> response = new HashMap<>();
-                response.put("shopId", shop.getId());
-                response.put("account", shop.getAccount());
-                return ResponseEntity.ok(response);
-            } else {
-                return ResponseEntity.badRequest().body("註冊失敗，帳號已存在。");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("伺服器錯誤：" + e.getMessage());
+        Shop shop = shopService.registerShop(request);
+        if (shop != null) {
+            Map<String, Object> res = new HashMap<>();
+            res.put("shopId", shop.getId());
+            res.put("account", shop.getAccount());
+            return ResponseEntity.ok(res);
         }
+        return ResponseEntity.badRequest().body("註冊失敗，帳號已存在。");
     }
 
     @PostMapping("/updateProfile")
     public ResponseEntity<String> updateProfile(@RequestBody ShopUpdateProfileRequest request) {
         boolean success = shopService.updateProfile(request);
-        if (success) {
+        if (success)
             return ResponseEntity.ok("資料更新成功！");
-        } else {
-            return ResponseEntity.badRequest().body("更新失敗，找不到該商家。");
-        }
+        return ResponseEntity.badRequest().body("更新失敗，找不到該商家。");
     }
 }

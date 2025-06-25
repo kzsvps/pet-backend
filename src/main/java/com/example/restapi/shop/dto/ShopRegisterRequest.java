@@ -3,13 +3,7 @@ package com.example.restapi.shop.dto;
 public class ShopRegisterRequest {
     private String account;
     private String password;
-    private String shopName;
-    private String address;
-    private String phone;
-    private String city; // 會用 City enum 對應字串
-    private String type; // 會用 ShopType enum 對應字串
 
-    // getters & setters
     public String getAccount() {
         return account;
     }
@@ -24,45 +18,5 @@ public class ShopRegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getShopName() {
-        return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
