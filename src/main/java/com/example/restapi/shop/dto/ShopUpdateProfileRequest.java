@@ -1,29 +1,21 @@
 package com.example.restapi.shop.dto;
 
-public class ShopRegisterRequest {
-    private String account;
-    private String password;
+public class ShopUpdateProfileRequest {
+    private Long shopId;
     private String shopName;
     private String address;
     private String phone;
-    private String city; // 會用 City enum 對應字串
-    private String type; // 會用 ShopType enum 對應字串
+    private String city;
+    private String type;
 
-    // getters & setters
-    public String getAccount() {
-        return account;
+    // getters and setters
+
+    public Long getShopId() {
+        return shopId;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
     }
 
     public String getShopName() {
