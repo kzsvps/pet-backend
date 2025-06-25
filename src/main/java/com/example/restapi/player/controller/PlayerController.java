@@ -21,6 +21,9 @@ public class PlayerController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody PlayerRegisterRequest request) {
         try {
+            System.out.println("Account: " + request.getAccount());
+            System.out.println("Password: " + request.getPassword());
+
             Player player = playerService.registerPlayer(request);
             if (player != null) {
                 Map<String, Object> response = new HashMap<>();
