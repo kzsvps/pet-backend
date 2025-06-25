@@ -1,5 +1,6 @@
 package com.example.restapi.shop.entity;
 
+import com.example.restapi.shop.enums.City;
 import com.example.restapi.shop.enums.ShopType;
 import jakarta.persistence.*;
 
@@ -24,7 +25,8 @@ public class Shop {
     @Enumerated(EnumType.STRING)
     private ShopType type;
 
-    private String city;
+    @Enumerated(EnumType.STRING) // ✅ 加上這行才會存成 enum 名稱
+    private City city;
 
     // Getter & Setter
     public Integer getId() {
@@ -79,11 +81,11 @@ public class Shop {
         this.type = type;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 }

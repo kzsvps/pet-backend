@@ -3,7 +3,6 @@ package com.example.restapi.shop.service.impl;
 import com.example.restapi.shop.dto.ShopRegisterRequest;
 import com.example.restapi.shop.dto.ShopUpdateProfileRequest;
 import com.example.restapi.shop.entity.Shop;
-import com.example.restapi.shop.enums.ShopType;
 import com.example.restapi.shop.repository.ShopRepository;
 import com.example.restapi.shop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class ShopServiceImpl implements ShopService {
         shop.setPhone(request.getPhone());
         shop.setCity(request.getCity());
         // 這裡轉換
-        shop.setType(ShopType.fromLabel(request.getType()));
+        shop.setType(request.getType());
 
         shopRepository.save(shop);
         return true;

@@ -1,12 +1,15 @@
 package com.example.restapi.shop.dto;
 
+import com.example.restapi.shop.enums.City;
+import com.example.restapi.shop.enums.ShopType;
+
 public class ShopUpdateProfileRequest {
-    private Integer shopId; // 注意要 Integer 不要 Long
+    private Integer shopId;
     private String shopName;
-    private String type;
+    private ShopType type; // ✅ 改為 enum
     private String address;
     private String phone;
-    private String city;
+    private City city; // ✅ 改為 enum
 
     // getters & setters
     public Integer getShopId() {
@@ -25,11 +28,11 @@ public class ShopUpdateProfileRequest {
         this.shopName = shopName;
     }
 
-    public String getType() {
+    public ShopType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ShopType type) {
         this.type = type;
     }
 
@@ -49,11 +52,11 @@ public class ShopUpdateProfileRequest {
         this.phone = phone;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 }
