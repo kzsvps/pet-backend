@@ -1,6 +1,7 @@
 package com.example.restapi.shop.controller;
 
 import com.example.restapi.shop.dto.ShopRegisterRequest;
+import com.example.restapi.shop.dto.ShopUpdateProfileRequest;
 import com.example.restapi.shop.entity.Shop;
 import com.example.restapi.shop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,13 @@ public class ShopController {
         }
     }
 
-    // 其他路由如 updateProfile 可依需求加
+    @PostMapping("/updateProfile")
+    public ResponseEntity<String> updateProfile(@RequestBody ShopUpdateProfileRequest request) {
+        boolean success = shopService.updateProfile(request);
+        if (success) {
+            return ResponseEntity.ok("資料更新成功！");
+        } else {
+            return ResponseEntity.badRequest().body("更新失敗，找不到該商家。");
+        }
+    }
 }

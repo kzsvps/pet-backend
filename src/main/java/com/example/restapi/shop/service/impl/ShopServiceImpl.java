@@ -1,7 +1,9 @@
 package com.example.restapi.shop.service.impl;
 
 import com.example.restapi.shop.dto.ShopRegisterRequest;
+import com.example.restapi.shop.dto.ShopUpdateProfileRequest;
 import com.example.restapi.shop.entity.Shop;
+import com.example.restapi.shop.enums.ShopType;
 import com.example.restapi.shop.repository.ShopRepository;
 import com.example.restapi.shop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,7 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop registerShop(ShopRegisterRequest request) {
-        Optional<Shop> existing = shopRepository.findByAccount(request.getAccount());
-        if (existing.isPresent()) {
+        if (shopRepository.findByAccount(request.getAccount()).isPresent()) {
             return null; // 帳號已存在
         }
 
@@ -29,9 +30,26 @@ public class ShopServiceImpl implements ShopService {
         shop.setAccount(request.getAccount());
         shop.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        // 第一階段只存帳號密碼，後面基本資料再更新
         return shopRepository.save(shop);
     }
 
-    // 可加 updateProfile 方法，負責更新店名、地址、電話、city、type 等
+    @Override
+    public boolean updateProfile(ShopUpdateProfileRequest request) {
+        Optional<Shop> shopOpt = shopRepository.findById(request.getShopId());
+        if (shopOpt.isEmpty()) {
+            return false;
+        }
+
+        Shop shop = shopOpt.get();
+        shop.setShopName(request.getShopName());
+        shop.setAddress(request.getAddress());
+        shop.setPhone(request.getPhone());
+        shop.setCity(request.getCity());
+        // 這裡轉換
+        shop.setType(ShopType.fromString(request.getType()));
+
+        shopRepository.save(shop);
+        return true;
+    }
+
 }

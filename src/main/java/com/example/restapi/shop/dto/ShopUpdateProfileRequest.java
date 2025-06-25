@@ -1,20 +1,18 @@
 package com.example.restapi.shop.dto;
 
-import com.example.restapi.shop.enums.City;
-
 public class ShopUpdateProfileRequest {
-    private Long shopId;
+    private Integer shopId; // 主鍵改為 Integer
     private String shopName;
     private String address;
     private String phone;
-    private City city;
+    private String city;
     private String type;
 
-    public Long getShopId() {
+    public Integer getShopId() {
         return shopId;
     }
 
-    public void setShopId(Long shopId) {
+    public void setShopId(Integer shopId) {
         this.shopId = shopId;
     }
 
@@ -42,11 +40,11 @@ public class ShopUpdateProfileRequest {
         this.phone = phone;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
