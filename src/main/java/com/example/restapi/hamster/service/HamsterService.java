@@ -37,6 +37,6 @@ public class HamsterService {
     }
 
     public List<Hamster> getHamstersByPlayerId(Long playerId) {
-        return hamsterRepository.findByPlayerId(playerId);
+        return hamsterRepository.findByPlayer_Id(playerId);
     }
 }
